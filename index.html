@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cooking Day Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="kitchen-bg" aria-hidden="true">
+      <span>🍅</span>
+      <span>🥑</span>
+      <span>🥕</span>
+      <span>🧄</span>
+      <span>🍋</span>
+      <span>🌶️</span>
+    </div>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-mark">🥘</div>
+        <div>
+          <strong>CookQuest</strong>
+          <span>AI meal to-do maker</span>
+        </div>
+      </header>
+
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">🍳 Daily cooking mission</p>
+          <h1>Your day, turned into a delicious checklist.</h1>
+          <p>
+            Tell the planner what your day looks like, then get breakfast,
+            lunch, dinner, groceries, swaps, and a budget check in one neat list.
+          </p>
+          <div class="hero-actions" aria-label="Planner highlights">
+            <span>🌅 Breakfast</span>
+            <span>🛒 Groceries</span>
+            <span>🔁 Swaps</span>
+            <span>💸 Budget</span>
+          </div>
+        </div>
+        <div class="hero-board" aria-label="Cooking preview">
+          <div class="recipe-card one">
+            <span>🌅</span>
+            <strong>Oat Bowl</strong>
+            <small>8 min</small>
+          </div>
+          <div class="recipe-card two">
+            <span>☀️</span>
+            <strong>Rice Bowl</strong>
+            <small>$ smart</small>
+          </div>
+          <div class="recipe-card three">
+            <span>🌙</span>
+            <strong>Pasta</strong>
+            <small>cozy</small>
+          </div>
+          <div class="pan-emoji">🍳</div>
+          <div class="sparkle">✨</div>
+        </div>
+      </section>
+
+      <section class="planner-grid">
+        <form class="control-panel" id="plannerForm">
+          <div class="panel-heading">
+            <span>📝</span>
+            <div>
+              <h2>Your Day</h2>
+              <p>Shape the plan around real life.</p>
+            </div>
+          </div>
+
+          <label>
+            🌤️ Day vibe
+            <select id="dayType">
+              <option value="busy">Busy and packed</option>
+              <option value="balanced">Balanced and normal</option>
+              <option value="lazy">Slow and cozy</option>
+              <option value="active">Active and high-energy</option>
+            </select>
+          </label>
+
+          <label>
+            ⏱️ Cooking time today
+            <select id="timeAvailable">
+              <option value="15">15 minutes per meal</option>
+              <option value="30" selected>30 minutes per meal</option>
+              <option value="45">45 minutes per meal</option>
+            </select>
+          </label>
+
+          <label>
+            💵 Budget for groceries
+            <input id="budget" type="number" min="5" value="25" />
+          </label>
+
+          <fieldset>
+            <legend>🥗 Eating style</legend>
+            <div class="chip-row">
+              <label class="chip">
+                <input type="radio" name="diet" value="flexible" checked />
+                <span>Flexible</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="diet" value="vegetarian" />
+                <span>Vegetarian</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="diet" value="vegan" />
+                <span>Vegan</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label>
+            🧺 Ingredients you already have
+            <textarea
+              id="pantry"
+              rows="4"
+              placeholder="rice, eggs, oats, spinach..."
+            ></textarea>
+          </label>
+
+          <label>
+            😋 Mood craving
+            <select id="mood">
+              <option value="fresh">Fresh and light</option>
+              <option value="comfort">Comfort food</option>
+              <option value="protein">Protein packed</option>
+              <option value="spicy">Spicy and bold</option>
+            </select>
+          </label>
+
+          <button type="submit" class="primary-button">✨ Generate Plan</button>
+        </form>
+
+        <section class="results-panel" aria-live="polite">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Today’s plan</p>
+              <h2 id="missionTitle">Ready when you are 👩‍🍳</h2>
+            </div>
+            <button id="cheaperButton" class="ghost-button" type="button">
+              💸 Cheaper
+            </button>
+          </div>
+
+          <div id="results" class="empty-state">
+            <div class="empty-icon">🥘</div>
+            <h3>Your cooking board is warming up.</h3>
+            <p>Fill the form and generate a personal meal to-do list.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
