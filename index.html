@@ -3,161 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cooking Day Planner</title>
+    <title>Culture Compass | GenAI Travel Discovery</title>
+    <meta name="description" content="Discover cultural heritage, custom travel trails, and local hidden gems with Culture Compass - an AI-powered travel itinerary builder." />
+    <meta name="keywords" content="culture travel, AI itinerary generator, local heritage, hidden gems travel, India discovery, tourism compass" />
+    <meta property="og:title" content="Culture Compass | GenAI Travel Discovery" />
+    <meta property="og:description" content="Generate custom city trails that blend iconic attractions, local traditions, hidden gems, and storytelling." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="kitchen-bg" aria-hidden="true">
-      <span>🍅</span>
-      <span>🥑</span>
-      <span>🥕</span>
-      <span>🧄</span>
-      <span>🍋</span>
-      <span>🌶️</span>
-    </div>
     <main class="app-shell">
-      <header class="topbar">
-        <div class="brand-mark">🥘</div>
-        <div>
-          <strong>CookQuest</strong>
-          <span>AI meal to-do maker</span>
+      <nav class="topbar" aria-label="Product">
+        <a class="brand" href="#">
+          <span class="brand-mark">🧭</span>
+          <span>
+            <strong>Culture Compass</strong>
+            <small>GenAI heritage travel</small>
+          </span>
+        </a>
+        <div class="topbar-actions">
+          <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle Dark/Light Theme">🌙 Dark Mode</button>
+          <div class="nav-pills" aria-label="Highlights">
+            <span>Hidden gems</span>
+            <span>Local stories</span>
+            <span>Heritage trails</span>
+          </div>
         </div>
-      </header>
+        <a class="nav-link" href="kerala.html" style="margin-left:20px; color:#fff; text-decoration:none;">Kerala</a>
 
-      <section class="hero-panel">
-        <div class="hero-copy">
-          <p class="eyebrow">🍳 Daily cooking mission</p>
-          <h1>Your day, turned into a delicious checklist.</h1>
-          <p>
-            Tell the planner what your day looks like, then get breakfast,
-            lunch, dinner, groceries, swaps, and a budget check in one neat list.
-          </p>
-          <div class="hero-actions" aria-label="Planner highlights">
-            <span>🌅 Breakfast</span>
-            <span>🛒 Groceries</span>
-            <span>🔁 Swaps</span>
-            <span>💸 Budget</span>
-          </div>
+      <section class="hero">
+        <div class="hero-media" aria-label="Indore Rajwada Palace travel preview">
+          <img
+            src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"
+            alt="Historic Indian palace courtyard glowing at sunset"
+          />
+          <button class="map-pin pin-one" type="button" data-hero-pin="0">
+            <strong>Rajwada</strong>
+            <span>Story stop</span>
+          </button>
+          <button class="map-pin pin-two" type="button" data-hero-pin="1">
+            <strong>Sarafa</strong>
+            <span>Midnight food walk</span>
+          </button>
+          <button class="map-pin pin-three" type="button" data-hero-pin="2">
+            <strong>Chhatri</strong>
+            <span>Hidden gem</span>
+          </button>
         </div>
-        <div class="hero-board" aria-label="Cooking preview">
-          <div class="recipe-card one">
-            <span>🌅</span>
-            <strong>Oat Bowl</strong>
-            <small>8 min</small>
+        <div class="hero-copy">
+          <p class="eyebrow">✨ AI powered cultural discovery</p>
+          <h1>Travel deeper than landmarks.</h1>
+          <p>
+            Generate meaningful city trails that blend iconic attractions,
+            local events, living heritage, oral storytelling, food traditions,
+            and authentic cultural hosts.
+          </p>
+          <div class="hero-actions" aria-label="AI capabilities">
+            <span>🏛️ Attractions</span>
+            <span>🔎 Hidden gems</span>
+            <span>🎧 Immersive stories</span>
+            <span>🎭 Local events</span>
           </div>
-          <div class="recipe-card two">
-            <span>☀️</span>
-            <strong>Rice Bowl</strong>
-            <small>$ smart</small>
-          </div>
-          <div class="recipe-card three">
-            <span>🌙</span>
-            <strong>Pasta</strong>
-            <small>cozy</small>
-          </div>
-          <div class="pan-emoji">🍳</div>
-          <div class="sparkle">✨</div>
         </div>
       </section>
 
-      <section class="planner-grid">
-        <form class="control-panel" id="plannerForm">
+      <section class="workspace">
+        <form class="control-panel" id="travelForm">
+          <div class="settings-trigger-row">
+            <span>⚙️ API Configuration</span>
+            <button type="button" id="toggleSettingsBtn" class="ghost-button compact-btn">Configure Groq</button>
+          </div>
+          <div id="settingsPanel" class="settings-drawer" hidden>
+            <label>
+              Groq API Key
+              <input type="password" id="groqApiKey" placeholder="gsk_..." />
+            </label>
+            <label>
+              Model
+              <select id="groqModel">
+                <option value="llama-3.3-70b-versatile" selected>llama-3.3-70b-versatile</option>
+                <option value="mixtral-8x7b-32768">mixtral-8x7b-32768</option>
+              </select>
+            </label>
+          </div>
+
           <div class="panel-heading">
-            <span>📝</span>
+            <span>🪄</span>
             <div>
-              <h2>Your Day</h2>
-              <p>Shape the plan around real life.</p>
+              <h2>Build A Cultural Trail</h2>
+              <p>Choose the travel mood and let the guide compose a route.</p>
             </div>
           </div>
 
           <label>
-            🌤️ Day vibe
-            <select id="dayType">
-              <option value="busy">Busy and packed</option>
-              <option value="balanced">Balanced and normal</option>
-              <option value="lazy">Slow and cozy</option>
-              <option value="active">Active and high-energy</option>
+            Search city or place
+            <input
+              id="citySearch"
+              type="search"
+              list="citySuggestions"
+              placeholder="Try Mumbai, Kanheri Caves, street food..."
+            />
+            <datalist id="citySuggestions">
+              <option value="Mumbai"></option>
+              <option value="Indore"></option>
+              <option value="Jaipur"></option>
+              <option value="Varanasi"></option>
+              <option value="Kochi"></option>
+              <option value="Kanheri Caves"></option>
+              <option value="Khotachiwadi"></option>
+              <option value="Sassoon Docks"></option>
+            </datalist>
+            <span id="searchStatus" class="search-status">Search a city or filter places inside the selected destination.</span>
+          </label>
+
+          <label>
+            Destination
+            <select id="destination">
+              <option value="indore" selected>Indore, Madhya Pradesh</option>
+              <option value="mumbai">Mumbai, Maharashtra</option>
+              <option value="jaipur">Jaipur, Rajasthan</option>
+              <option value="varanasi">Varanasi, Uttar Pradesh</option>
+              <option value="kochi">Kochi, Kerala</option>
             </select>
           </label>
 
           <label>
-            ⏱️ Cooking time today
-            <select id="timeAvailable">
-              <option value="15">15 minutes per meal</option>
-              <option value="30" selected>30 minutes per meal</option>
-              <option value="45">45 minutes per meal</option>
+            Traveler mood
+            <select id="mood">
+              <option value="first-time">First-time explorer</option>
+              <option value="food">Food and market lover</option>
+              <option value="history">History and heritage seeker</option>
+              <option value="slow">Slow immersive traveler</option>
             </select>
           </label>
 
-          <label>
-            💵 Budget for groceries
-            <input id="budget" type="number" min="5" value="25" />
-          </label>
+          <div class="split-controls">
+            <label>
+              Time
+              <select id="time">
+                <option value="half">Half day</option>
+                <option value="full" selected>Full day</option>
+                <option value="weekend">Weekend</option>
+              </select>
+            </label>
+
+            <label>
+              Budget
+              <select id="budget">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="premium">Premium</option>
+              </select>
+            </label>
+          </div>
 
           <fieldset>
-            <legend>🥗 Eating style</legend>
+            <legend>Culture lens</legend>
             <div class="chip-row">
               <label class="chip">
-                <input type="radio" name="diet" value="flexible" checked />
-                <span>Flexible</span>
+                <input type="radio" name="lens" value="food" checked />
+                <span>🍲 Food</span>
               </label>
               <label class="chip">
-                <input type="radio" name="diet" value="vegetarian" />
-                <span>Vegetarian</span>
+                <input type="radio" name="lens" value="craft" />
+                <span>🧵 Craft</span>
               </label>
               <label class="chip">
-                <input type="radio" name="diet" value="vegan" />
-                <span>Vegan</span>
+                <input type="radio" name="lens" value="music" />
+                <span>🎶 Music</span>
               </label>
             </div>
           </fieldset>
 
           <label>
-            🧺 Ingredients you already have
+            Personal note
             <textarea
-              id="pantry"
+              id="note"
               rows="4"
-              placeholder="rice, eggs, oats, spinach..."
+              placeholder="Example: I want peaceful places, street food, and stories about old markets."
             ></textarea>
           </label>
 
-          <label>
-            😋 Mood craving
-            <select id="mood">
-              <option value="fresh">Fresh and light</option>
-              <option value="comfort">Comfort food</option>
-              <option value="protein">Protein packed</option>
-              <option value="spicy">Spicy and bold</option>
-            </select>
-          </label>
-
-          <button type="submit" class="primary-button">✨ Generate Plan</button>
+          <button type="submit" class="primary-button">✨ Generate Cultural Route</button>
         </form>
 
         <section class="results-panel" aria-live="polite">
           <div class="toolbar">
             <div>
-              <p class="eyebrow">Today’s plan</p>
-              <h2 id="missionTitle">Ready when you are 👩‍🍳</h2>
+              <p class="eyebrow">AI travel board</p>
+              <h2 id="routeTitle">Indore culture trail is ready</h2>
             </div>
-            <button id="cheaperButton" class="ghost-button" type="button">
-              💸 Cheaper
-            </button>
+            <button id="surpriseButton" class="ghost-button" type="button">🎲 Surprise Me</button>
           </div>
 
-          <div id="results" class="empty-state">
-            <div class="empty-icon">🥘</div>
-            <h3>Your cooking board is warming up.</h3>
-            <p>Fill the form and generate a personal meal to-do list.</p>
-          </div>
+          <div id="results" class="results-stack"></div>
         </section>
       </section>
+
+      <section class="prompt-lab" aria-labelledby="promptTitle">
+        <div>
+          <p class="eyebrow">Detailed prompt</p>
+          <h2 id="promptTitle">Reusable prompt for your GenAI platform</h2>
+        </div>
+        <p id="generatedPrompt"></p>
+      </section>
+
+      <div id="placeModal" class="place-modal" hidden>
+        <div class="place-modal-backdrop" data-close-place></div>
+        <article class="place-sheet" role="dialog" aria-modal="true" aria-labelledby="placeTitle">
+          <button class="close-button" type="button" data-close-place aria-label="Close place details">×</button>
+          <div class="place-sheet-media">
+            <img id="placeImage" alt="" />
+          </div>
+          <div class="place-sheet-body">
+            <p id="placeType" class="eyebrow"></p>
+            <h2 id="placeTitle"></h2>
+            <p id="placeDescription"></p>
+            <div id="placeMeta" class="place-meta"></div>
+            <div class="place-detail-grid">
+              <section>
+                <h3>Why go</h3>
+                <p id="placeWhy"></p>
+              </section>
+              <section>
+                <h3>Culture tip</h3>
+                <p id="placeTip"></p>
+              </section>
+            </div>
+            <div>
+              <h3>Nearby experiences</h3>
+              <ul id="placeNearby" class="mini-list"></ul>
+            </div>
+          </div>
+        </article>
+      </div>
     </main>
 
     <script src="app.js"></script>

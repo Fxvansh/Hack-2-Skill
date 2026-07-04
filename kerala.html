@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kerala – Culture Compass</title>
+  <meta name="description" content="Explore Kerala's hidden gems, food, culture, and heritage with AI‑generated stories.">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="topbar" aria-label="Product">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">🧭</span>
+      <strong>Culture Compass</strong>
+    </a>
+  </nav>
+  <main class="app-shell">
+    <section class="hero">
+      <div class="hero-media" aria-label="Kerala backwaters preview">
+        <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1400&q=85" alt="Kerala backwaters at sunset" />
+      </div>
+      <div class="hero-copy">
+        <h1>Kerala – Serenity by the Backwaters</h1>
+        <p class="eyebrow">✨ AI‑powered cultural discovery</p>
+        <p>Discover hidden gems, local flavors, events and heritage with a single click.</p>
+        <div class="hero-actions">
+          <button id="genStoryBtn" class="primary-button">🎉 Generate Immersive Story</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="hiddenGems">
+      <h2>💎 Hidden Gems</h2>
+      <ul class="list">
+        <li>Kerala Kalamandalam – centre for classical arts and dance.</li>
+        <li>Aranmula Mirror Village – traditional metal‑mirror craftsmen.</li>
+        <li>Kakkathuruthu Island – tranquil backwater island with mangrove walks.</li>
+        <li>Edakkal Caves – prehistoric rock‑cut shelters with petroglyphs.</li>
+        <li>Muziris Heritage Site – ancient port town with colonial‑era ruins.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="mustTaste">
+      <h2>🍲 Must‑Taste Foods</h2>
+      <ul class="list">
+        <li>Idiyappam – steamed rice‑flour noodles.</li>
+        <li>Kerala‑style Biryani – fragrant rice with coconut‑spiced meat/veg.</li>
+        <li>Freshly Squeezed Toddy – palm‑wine, traditionally served with snacks.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="cultureNotes">
+      <h2>📝 Cultural Notes</h2>
+      <ul class="list">
+        <li>Dress modestly for temple visits.</li>
+        <li>Remove shoes before entering homes & worship spaces.</li>
+        <li>Ask permission before photographing locals.</li>
+        <li>Carry rain gear if traveling July‑Sept (monsoon).</li>
+      </ul>
+    </section>
+
+    <section class="section" id="bestTime">
+      <h2>📅 Best Time to Visit</h2>
+      <p>October – February – cool, dry weather ideal for backwaters, beaches, and festivals.</p>
+    </section>
+
+    <section class="section" id="localEvents">
+      <h2>🎉 Local Events</h2>
+      <ul class="list">
+        <li>Kathakali Make‑up Demo – live demonstration of iconic facial painting.</li>
+        <li>Spice‑Market Tasting – guided sampling of pepper, cardamom, and clove.</li>
+        <li>Fort Kochi Gallery Walk – curated walk through contemporary art spaces.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="heritage">
+      <h2>🏛️ Heritage & Traditions</h2>
+      <ul class="list">
+        <li>Chinese Fishing Nets – historic cantilever nets still used by fishermen.</li>
+        <li>Mattancherry Spice Streets – historic lanes of spice warehouses.</li>
+        <li>Paradesi Synagogue – testament to Kerala’s Jewish community.</li>
+        <li>Kathakali Performance – classical dance‑drama with elaborate costumes.</li>
+        <li>Coir Weaving – traditional coconut‑fiber craft in coastal villages.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="storyResult" style="display:none;">
+      <h2>📖 Your Immersive Story</h2>
+      <pre id="storyText" class="story-box"></pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    // Client‑side story generation handler
+    document.getElementById('genStoryBtn').addEventListener('click', async () => {
+      const prompt = "Write a short, vivid story about Kerala's heritage, hidden gems, and local flavors. Use poetic language and include the places listed on this page.";
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt, model: 'llama-3.3-70b-versatile' })
+      });
+      const data = await response.json();
+      const story = data?.choices?.[0]?.message?.content || 'Story generation failed.';
+      document.getElementById('storyText').textContent = story;
+      document.getElementById('storyResult').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

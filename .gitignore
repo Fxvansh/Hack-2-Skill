@@ -1,0 +1,9 @@
+# Environment variables (keep API keys private)
+.env
+
+# Node modules
+node_modules/
+.npm-cache/
+
+# OS files
+.DS_Store
